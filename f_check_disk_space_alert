@@ -1,0 +1,11 @@
+# Function that uses f_check_disk_space to determine if there is a 
+# filesystem with low free space and generates an alert to the console if so
+f_check_disk_space_alert() {
+    local low_space
+    low_space=$(f_check_disk_space)
+
+    if [[ -n "$low_space" ]]; then
+        echo -e "\e[33;1mWARNING: Low disk space detected on the following filesystems:\e[0m"
+        echo "$low_space"
+    fi
+}
